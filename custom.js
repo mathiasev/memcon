@@ -1,4 +1,4 @@
-jQuery(function() {
+$(function() {
 
 alert('Ready');
 
