@@ -107,7 +107,7 @@ $sqlStr .= '(' . $domain . '), ';
 endforeach;
 
 print_r($sqlStr);
-$sql = "INSERT IGNORE INTO domains (domainURI) VALUES " . substr($sqlStr,0,-1);
+$sql = "INSERT IGNORE INTO domains (domainURI) VALUES " . substr($sqlStr,0,-1) . ';';
 echo $sql;
 
 if (!$result = $mysqli->query($sql)) {
