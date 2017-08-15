@@ -152,10 +152,10 @@ echo '<img src="' . $imageURI . '" class="img-thumbnail">';
 echo '<p>Image URL: ' . $imageURI . '</p></div><div class="col-md-6">';
 echo '<p>Added on: ' . $result['imageAdded'] . '</p>';
 echo '<p>Last Updated: ' . $result['lastUpdate'] . '</p>';
-echo '<h2>Image Value: ' . $result['imageValue'] . '</h2>';
+echo '<h2>Image Value: ' . $result['imageValue'] . '</h2></div></div>';
 $domains = json_decode($result['imageDomainsCount']);
 $len = count($domains[0]);
-$html = '<table class="table"><thead><tr><th>Domain</th><th>Count</th><th>Value</th><th>Total</th></tr></thead><tbody>';
+$html = '<div class="row"><div class="col-md-8 col-md-offset-2"><table class="table"><thead><tr><th>Domain</th><th>Count</th><th>Value</th><th>Total</th></tr></thead><tbody>';
 for ($i = 0; $i < $len; $i++) :
 	$html .= '<tr><td>' . $domains[0][$i] . '</td><td id="' . $i . '-qty">' . $domains[1][$i] . '</td><td><input type="number" value="0.00" id="' . $i . '-value"></td><td id="' . $i . '-total"></th></tr>';
 endfor;
