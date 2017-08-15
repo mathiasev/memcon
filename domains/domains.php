@@ -6,7 +6,7 @@
 // the scope of this simple example. Example:
 //   http://example.org/script.php?aid=42
 if (isset($_POST['registered']) && ($_GET['registered'] == 'true')) {
-    $count = *;
+    $count = 1;
 } else {
     $aid = 1;
 }
