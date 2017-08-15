@@ -94,7 +94,8 @@ if ($mysqli->connect_errno) {
     echo "Error: " . $mysqli->connect_error . "\n";
     exit;
 }
-
+echo $sqlStr;
+exit;
 $sql = "INSERT IGNORE INTO domains (domainURI) VALUES " . substr($sqlStr,0,-1);
 echo $sql;
 if (!$result = $mysqli->query($sql)) {
