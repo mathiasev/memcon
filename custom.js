@@ -6,6 +6,10 @@ $("#go").click(function(){
     },
     function(data, status){
 		$('#result').html(data);
+		    $('html, body').animate({
+        scrollTop: $("#result").offset().top
+    }, 2000);
+
     });
 });
 $("#domains").click(function(){
@@ -26,5 +30,7 @@ jQuery("#" + index + "-total").text(val);
 total += val;
 });
 jQuery("#tot-val").text(total);});
+
+
 
 console.log("Ready");

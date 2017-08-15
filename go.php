@@ -149,10 +149,10 @@ if(isset($result['imgURI']) && $result['imgURI'] == $imageURI):
 /* IF image exists */
 echo '<div class="row"><div class="col-md-6">';
 echo '<img src="' . $imageURI . '" class="img-thumbnail">';
-echo '<p>Image URL: ' . $imageURI . '</p></div><div class="col-md-6">';
-echo '<p>Added on: ' . $result['imageAdded'] . '</p>';
-echo '<p>Last Updated: ' . $result['lastUpdate'] . '</p>';
-echo '<h2>Image Value: ' . $result['imageValue'] . '</h2></div></div>';
+echo '<p><small>Image URL: ' . $imageURI . '</small></p>';
+echo '<p><small>Added on: ' . $result['imageAdded'] . '<small></p>';
+echo '<p><small>Last Updated: ' . $result['lastUpdate'] . '<small></p></div><div class="col-md-6">';
+echo '<h3>Image Value: ' . $result['imageValue'] . '</h3></div></div>';
 $domains = json_decode($result['imageDomainsCount']);
 $len = count($domains[0]);
 $html = '<div class="row"><div class="col-md-8 col-md-offset-2"><table class="table"><thead><tr><th>Domain</th><th>Count</th><th>Value</th><th>Total</th></tr></thead><tbody>';
