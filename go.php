@@ -5,6 +5,7 @@ ini_set('display_errors', 1);
 
 
 function postURL() {
+	global $mysqli;
 $req_key = 'AIzaSyCzu8cvbYjW4Q5HOTO1kB18ZQ3oH6o_I98';
 $req_url = 'https://vision.googleapis.com/v1/images:annotate?key=' . $req_key;
 $req_img_uri = $_POST['url'];
@@ -85,41 +86,13 @@ foreach ($fullMatches as $match) :
 	endif;
 endforeach;
 
-sendSQL($req_img_uri, $domains, $count);
+//sendSQL($req_img_uri, $domains, $count);
 
-return array('domains' => $domains, 'count' => $count);
-}
+//return array('domains' => $domains, 'count' => $count);
 
-function sendSQL($imageURI, $domains, $count) {
-	/* Short SQL */
-$mysqli = new mysqli('localhost', 'generaluser', 'generalpass', 'memcon');
-if ($mysqli->connect_errno) {
-    echo "Error: Failed to make a MySQL connection, here is why: \n";
-    echo "Errno: " . $mysqli->connect_errno . "\n";
-    echo "Error: " . $mysqli->connect_error . "\n";
-    exit;
-}
 
-/* Check if Image Exists */
-echo $sql = 'SELECT * FROM images WHERE imgURI = "' . $imageURI . '";';
-
-if (!$result = $mysqli->query($sql)) {
-    echo "BAD SQL.";
-	exit;
-}
-$result = $result->fetch_assoc();
-
-if(isset($result['imgURI']) && $result['imgURI'] == $imageURI):
-/* IF image exists */
-echo '<img src="' . $imageURI . '">';
-
-foreach ($result as $info):
-	echo '<p>' . print_r($info,true) . '</p>';
-endforeach;
-
-elseif (!isset($result['imgURI']) && $result['imgURI'] != $imageURI):
 /* If image != exists */
-$sql = 'INSERT INTO images (imgURI, imageDomainsCount) VALUES ("' . $imageURI . '", "' . print_r(array($domains, $count),true) . '");';
+$sql = 'INSERT INTO images (imgURI, imageDomainsCount) VALUES ("' . $imageURI . '", "' . json_encode(array($domains, $count)) . '");';
 if (!$result = $mysqli->query($sql)) {
     echo "Sorry, could not create image.";
     exit;
@@ -147,8 +120,43 @@ if (!$result = $mysqli->query($sql)) {
 }
 
 endfor;
+
+}
+
+function sendSQL($imageURI) {
+	
+	/* Short SQL */
+$mysqli = new mysqli('localhost', 'generaluser', 'generalpass', 'memcon');
+if ($mysqli->connect_errno) {
+    echo "Error: Failed to make a MySQL connection, here is why: \n";
+    echo "Errno: " . $mysqli->connect_errno . "\n";
+    echo "Error: " . $mysqli->connect_error . "\n";
+    exit;
+}
+
+/* Check if Image Exists */
+echo $sql = 'SELECT * FROM images WHERE imgURI = "' . $imageURI . '";';
+
+if (!$result = $mysqli->query($sql)) {
+    echo "BAD SQL.";
+	exit;
+}
+$result = $result->fetch_assoc();
+
+if(isset($result['imgURI']) && $result['imgURI'] == $imageURI):
+/* IF image exists */
+echo '<img src="' . $imageURI . '">';
+
+foreach ($result as $info):
+	echo '<p>' . json_decode($info) . '</p>';
+endforeach;
+
+elseif (!isset($result['imgURI']) && $result['imgURI'] != $imageURI):
+
+	postURL();
 endif;
 $mysqli->close();
+
 
 }
 
