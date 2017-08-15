@@ -101,12 +101,12 @@ if ($mysqli->connect_errno) {
 }
 $sqlStr= '';
 //print_r($domains);
+$countVal = count($count);
+for ($i = 0; $i < $countVal; $i ++):
+$sqlStr .= '(\'' . $domain . '\',' . $count[$i] . '), ';
+endfor;
 
-foreach ($domains as $domain) :
-$sqlStr .= '(\'' . $domain . '\'), ';
-endforeach;
-
-$sql = "INSERT IGNORE INTO domains (domainURI) VALUES " . substr($sqlStr,0,-2) . ';';
+$sql = "INSERT IGNORE INTO domains (domainURI, domainImagesIndexed) VALUES " . substr($sqlStr,0,-2) . ';';
 echo $sql;
 
 if (!$result = $mysqli->query($sql)) {
