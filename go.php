@@ -7,7 +7,7 @@ ini_set('display_errors', 1);
 function postURL() {
 $req_key = 'AIzaSyCzu8cvbYjW4Q5HOTO1kB18ZQ3oH6o_I98';
 $req_url = 'https://vision.googleapis.com/v1/images:annotate?key=' . $req_key;
-
+$req_img_uri = $_POST['url'];
 
 $req_body = '{
   "requests":[
@@ -15,7 +15,7 @@ $req_body = '{
       "image":{
         "source":{
           "imageUri":
-            "' . $_POST['url'] . '"
+            "' . $req_img_uri . '"
         }
       },
       "features":[
@@ -85,18 +85,43 @@ foreach ($fullMatches as $match) :
 	endif;
 endforeach;
 
-sendSQL($domains, $count);
+sendSQL($req_img_uri, $domains, $count);
 
 return array('domains' => $domains, 'count' => $count);
 }
 
-function sendSQL($domains, $count) {
+function sendSQL($imageURI, $domains, $count) {
 	/* Short SQL */
 $mysqli = new mysqli('localhost', 'generaluser', 'generalpass', 'memcon');
 if ($mysqli->connect_errno) {
     echo "Error: Failed to make a MySQL connection, here is why: \n";
     echo "Errno: " . $mysqli->connect_errno . "\n";
     echo "Error: " . $mysqli->connect_error . "\n";
+    exit;
+}
+
+/* Check if Image Exists */
+$sql = 'SELECT * FROM images WHERE imageURI = "' . $imageURI . '";"';
+
+if (!$result = $mysqli->query($sql)) {
+    echo "Sorry, could not find image.";
+    exit;
+}
+$result = $result->fetch_assoc()
+
+if($result['id']):
+/* IF image exists */
+echo '<img src="' . $req_img_uri . '">';
+
+foreach ($result as $info):
+	echo '<p>' . $info . '</p>';
+endforeach;
+
+else:
+/* If image != exists */
+$sql = 'INSERT INTO images (imgURI, imageDomainsCount) VALUES ("' . $req_img_uri . '", "' . array($domains, $count); . '";';
+if (!$result = $mysqli->query($sql)) {
+    echo "Sorry, could not create image.";
     exit;
 }
 $sqlStr= '';
@@ -110,7 +135,7 @@ $sql = "INSERT IGNORE INTO domains (domainURI) VALUES " . substr($sqlStr,0,-2) .
 echo $sql;
 
 if (!$result = $mysqli->query($sql)) {
-    echo "Sorry, the website is experiencing problems.";
+    echo "Sorry, could not insert domains.";
     exit;
 }
 
@@ -122,6 +147,7 @@ if (!$result = $mysqli->query($sql)) {
 }
 
 endfor;
+endif;
 $mysqli->close();
 
 }
