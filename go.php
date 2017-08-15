@@ -2,7 +2,14 @@
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
+/* Short SQL */
+$mysqli = new mysqli('localhost', 'generaluser', 'generalpass', 'memcon');
+if ($mysqli->connect_errno) {
+    echo "Error: Failed to make a MySQL connection, here is why: \n";
+    echo "Errno: " . $mysqli->connect_errno . "\n";
+    echo "Error: " . $mysqli->connect_error . "\n";
+    exit;
+}
 
 function postURL() {
 	global $mysqli;
@@ -126,14 +133,7 @@ endfor;
 
 function sendSQL($imageURI) {
 	
-	/* Short SQL */
-$mysqli = new mysqli('localhost', 'generaluser', 'generalpass', 'memcon');
-if ($mysqli->connect_errno) {
-    echo "Error: Failed to make a MySQL connection, here is why: \n";
-    echo "Errno: " . $mysqli->connect_errno . "\n";
-    echo "Error: " . $mysqli->connect_error . "\n";
-    exit;
-}
+	global $mysqli;
 
 /* Check if Image Exists */
 $sql = 'SELECT * FROM images WHERE imgURI = "' . $imageURI . '";';
@@ -167,10 +167,11 @@ elseif (!isset($result['imgURI']) && $result['imgURI'] != $imageURI):
 
 	postURL();
 endif;
-$mysqli->close();
 
 
 }
 
 echo sendSQL($_POST['url']);
+$mysqli->close();
+
 ?>
