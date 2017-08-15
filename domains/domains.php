@@ -75,7 +75,7 @@ while ($domain = $result->fetch_assoc()) {
     echo "<tr><td>" . $domain['id'] . "</td>";
     echo "<td>" . $domain['domainURI'] . "</td>";
 	echo "<td>" . $domain['domainImagesIndexed'] . "</td>";
-	echo "<td>" . $domain['domainValue"] . "</td>";
+	echo "<td>" . $domain['domainValue'] . "</td>";
     echo "</tr>\n";
 }
 echo "</tbody></table>\n";
