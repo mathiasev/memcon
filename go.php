@@ -111,7 +111,7 @@ $result = $result->fetch_assoc();
 
 if($result['id']):
 /* IF image exists */
-echo '<img src="' . $req_img_uri . '">';
+echo '<img src="' . $imgURI . '">';
 
 foreach ($result as $info):
 	echo '<p>' . $info . '</p>';
