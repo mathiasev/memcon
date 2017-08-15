@@ -154,11 +154,10 @@ echo '<p>Added on: ' . $result['imageAdded'] . '</p>';
 echo '<p>Last Updated: ' . $result['lastUpdate'] . '</p>';
 echo '<h2>Image Value: ' . $result['imageValue'] . '</h2>';
 $domains = json_decode($result['imageDomainsCount']);
-echo '<pre>'; print_r($domains); echo '</pre>';
-$len = count($domains['domains']);
+$len = count($domains[0]);
 $html = '<table class="table"><thead><tr><th>Domain</th><th>Count</th><th>Value</th><th>Total</th></tr></thead><tbody>';
 for ($i = 0; $i < $len; $i++) :
-	$html .= '<tr><td>' . $domains['domains'][$i] . '</td><td id="' . $i . '-qty">' . $domains['count'][$i] . '</td><td><input type="number" value="0.00" id="' . $i . '-value"></td><td id="' . $i . '-total"></th></tr>';
+	$html .= '<tr><td>' . $domains[0][$i] . '</td><td id="' . $i . '-qty">' . $domains[1][$i] . '</td><td><input type="number" value="0.00" id="' . $i . '-value"></td><td id="' . $i . '-total"></th></tr>';
 endfor;
 $html .= '</tbody><tfoot><tr><td></td><td>' . $len . '</td><td></td><td id="tot-val"></td></tr></tfoot></table>';
 echo $html;
