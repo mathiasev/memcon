@@ -116,7 +116,7 @@ if (!$result = $mysqli->query($sql)) {
 
 $countVal = count($count);
 for ($i = 0; $i < $countVal; $i++):
- $sql = 'UPDATE domains SET domainImagesIndexed = domainImagesIndexed + ' . $count[$i] . ' WHERE domainURI = "' .$domain[$i] . '";';
+ $sql = 'UPDATE domains SET domainImagesIndexed = domainImagesIndexed + ' . $count[$i] . ' WHERE domainURI = "' .$domains[$i] . '";';
 if (!$result = $mysqli->query($sql)) {
     echo "Couldn't update " . $domain;
 }
