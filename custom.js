@@ -6,10 +6,7 @@ $("#go").click(function(){
     },
     function(data, status){
 		$('#result').html(data);
-		$('html, body').animate({
-        scrollTop: $("#result").offset().top
-    }, 2000);
-
+		$.scrollTo('#result',800);
     });
 });
 $("#domains").click(function(){
