@@ -103,7 +103,7 @@ $sqlStr= '';
 //print_r($domains);
 $countVal = count($count);
 for ($i = 0; $i < $countVal; $i ++):
-$sqlStr .= '(\'' . $domain . '\',' . $count[$i] . '), ';
+$sqlStr .= '(\'' . $domains[$i] . '\',' . $count[$i] . '), ';
 endfor;
 
 $sql = "INSERT IGNORE INTO domains (domainURI, domainImagesIndexed) VALUES " . substr($sqlStr,0,-2) . ';';
