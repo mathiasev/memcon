@@ -109,7 +109,7 @@ if (!$result = $mysqli->query($sql)) {
 }
 $result = $result->fetch_assoc();
 
-if(isset($result['id']) ):
+if(isset($result['imgURI']) && $result['imgURI'] == $imageURI):
 /* IF image exists */
 echo '<img src="' . $imageURI . '">';
 
