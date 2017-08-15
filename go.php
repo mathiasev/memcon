@@ -100,7 +100,7 @@ endforeach;
 
 
 /* If image != exists */
-$sql = 'INSERT INTO images (imgURI, imageDomainsCount) VALUES ("' . $req_img_uri . '", JSON_TYPE(\'' . json_encode(array($domains, $count)) . '\'));';
+$sql = 'INSERT INTO images (imgURI, imageDomainsCount) VALUES ("' . $req_img_uri . '", \'' . str_replace('"', '\\"',json_encode(array($domains, $count))) . '\');';
 echo $sql;
 if (!$result = $mysqli->query($sql)) {
     echo "Sorry, could not create image.";
@@ -148,7 +148,7 @@ $result = $result->fetch_assoc();
 if(isset($result['imgURI']) && $result['imgURI'] == $imageURI):
 /* IF image exists */
 echo '<div class="row"><div class="col-md-6">';
-echo '<img src="' . $imageURI . '">';
+echo '<img src="' . $imageURI . '" class="img-thumbnail">';
 echo '<p>Image URL: ' . $imageURI . '</p></div><div class="col-md-6">';
 echo '<p>Added on: ' . $result['imageAdded'] . '</p>';
 echo '<p>Last Updated: ' . $result['lastUpdate'] . '</p>';
