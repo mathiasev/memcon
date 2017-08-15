@@ -68,7 +68,7 @@ return $html;
 }
 
 function getDomains($req_img_uri, $output) {
-	global mysqli;
+	global $mysqli;
 $data = json_decode($output);
 
 $domains = array();	$count = array();
