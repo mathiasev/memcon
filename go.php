@@ -68,6 +68,7 @@ return $html;
 }
 
 function getDomains($req_img_uri, $output) {
+	global mysqli;
 $data = json_decode($output);
 
 $domains = array();	$count = array();
@@ -92,7 +93,7 @@ endforeach;
 
 
 /* If image != exists */
-$sql = 'INSERT INTO images (imgURI, imageDomainsCount) VALUES ("' . $imageURI . '", "' . json_encode(array($domains, $count)) . '");';
+$sql = 'INSERT INTO images (imgURI, imageDomainsCount) VALUES ("' . $req_img_uri . '", "' . json_encode(array($domains, $count)) . '");';
 if (!$result = $mysqli->query($sql)) {
     echo "Sorry, could not create image.";
     exit;
