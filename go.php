@@ -114,12 +114,12 @@ if(isset($result['imgURI']) && $result['imgURI'] == $imageURI):
 echo '<img src="' . $imageURI . '">';
 
 foreach ($result as $info):
-	echo '<p>' . $info . '</p>';
+	echo '<p>' . print_r($info,true) . '</p>';
 endforeach;
 
-else:
+elseif (!isset($result['imgURI']) && $result['imgURI'] != $imageURI):
 /* If image != exists */
-$sql = 'INSERT INTO images (imgURI, imageDomainsCount) VALUES ("' . $imageURI . '", "' . array($domains, $count) . '");';
+$sql = 'INSERT INTO images (imgURI, imageDomainsCount) VALUES ("' . $imageURI . '", "' . print_r(array($domains, $count),true) . '");';
 if (!$result = $mysqli->query($sql)) {
     echo "Sorry, could not create image.";
     exit;
