@@ -107,7 +107,7 @@ if (!$result = $mysqli->query($sql)) {
     echo "Sorry, could not find image.";
     exit;
 }
-$result = $result->fetch_assoc()
+$result = $result->fetch_assoc();
 
 if($result['id']):
 /* IF image exists */
@@ -119,7 +119,7 @@ endforeach;
 
 else:
 /* If image != exists */
-$sql = 'INSERT INTO images (imgURI, imageDomainsCount) VALUES ("' . $req_img_uri . '", "' . array($domains, $count); . '";';
+$sql = 'INSERT INTO images (imgURI, imageDomainsCount) VALUES ("' . $req_img_uri . '", "' . array($domains, $count) . '");';
 if (!$result = $mysqli->query($sql)) {
     echo "Sorry, could not create image.";
     exit;
