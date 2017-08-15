@@ -6,7 +6,7 @@ $("#go").click(function(){
     },
     function(data, status){
 		$('#result').html(data);
-		    $('html, body').animate({
+		$('html, body').animate({
         scrollTop: $("#result").offset().top
     }, 2000);
 
