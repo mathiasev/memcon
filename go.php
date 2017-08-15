@@ -161,5 +161,5 @@ $mysqli->close();
 
 }
 
-echo postURL();
+echo sendSQL($_POST['url']);
 ?>
