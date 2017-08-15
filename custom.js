@@ -1,13 +1,12 @@
 
 $("#go").click(function(){
-    $.post("https://google.com",
+    $.post("http://13.59.66.63/go.php",
     {
-        name: "Donald Duck",
-        city: "Duckburg"
+        url: $('#url').val(),
     },
     function(data, status){
         alert("Data: " + data + "\nStatus: " + status);
     });
 });
 
-console.log("Loaded");
+console.log("Ready");
