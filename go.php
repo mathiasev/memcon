@@ -147,10 +147,19 @@ $result = $result->fetch_assoc();
 if(isset($result['imgURI']) && $result['imgURI'] == $imageURI):
 /* IF image exists */
 echo '<img src="' . $imageURI . '">';
+echo '<p>Image URL: ' . $imageURI . '</p>';
+echo '<p>Added on: ' . $result['imageAdded'] . '</p>';
+echo '<p>Last Updated: ' . $result['imageUpdate'] . '</p>';
+echo '<h2>Image Value: ' . $result['imageValue'] . '</h2>';
+$domains = json_decode($result['imageDomainsCount']);
+$len = count($domains['domains']);
+$html .= '<table class="table"><thead><tr><th>Domain</th><th>Count</th><th>Value</th><th>Total</th></tr></thead><tbody>';
+for ($i = 0; $i < $len; $i++) :
+	$html .= '<tr><td>' . $domains['domains'][$i] . '</td><td id="' . $i . '-qty">' . $domains['count'][$i] . '</td><td><input type="number" value="0.00" id="' . $i . '-value"></td><td id="' . $i . '-total"></th></tr>';
+endfor;
+$html .= '</tbody><tfoot><tr><td></td><td>' . $len . '</td><td></td><td id="tot-val"></td></tr></tfoot></table>';
+echo $html;
 
-foreach ($result as $info):
-	echo '<p>' . json_decode($info) . '</p>';
-endforeach;
 
 elseif (!isset($result['imgURI']) && $result['imgURI'] != $imageURI):
 
