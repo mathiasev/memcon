@@ -101,7 +101,7 @@ endforeach;
 
 /* If image != exists */
 $sql = 'INSERT INTO images (imgURI, imageDomainsCount) VALUES ("' . $req_img_uri . '", \'' . str_replace('"', '\\"',json_encode(array($domains, $count))) . '\');';
-echo $sql;
+//echo $sql;
 if (!$result = $mysqli->query($sql)) {
     echo "Sorry, could not create image.";
     exit;
@@ -166,6 +166,7 @@ echo '</div></div>';
 elseif (!isset($result['imgURI']) && $result['imgURI'] != $imageURI):
 
 	postURL();
+	sendSQL($imageURI);
 endif;
 
 
