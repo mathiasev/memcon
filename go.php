@@ -74,7 +74,7 @@ $sqlStr = "";
 $fullMatches = $data->responses[0]->webDetection->fullMatchingImages;
 foreach ($fullMatches as $match) :
 	$domainArr = explode('/', $match->url);
-	$url = $domainArr[0] . '//' . $domainArr[2] . '</br>';
+	$url = $domainArr[0] . '//' . $domainArr[2];
 	$pos = array_search($url, $domains);
 	if($pos === FALSE):
 		$domains[] = $url;
