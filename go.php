@@ -103,7 +103,7 @@ $sqlStr= '';
 //print_r($domains);
 
 foreach ($domains as $domain) :
-$sqlStr .= '(\'' . $domain . '\', \'' . date('Y-m-d') . ', 0), ';
+$sqlStr .= '(\'' . $domain . '\', \'' . date('Y-m-d') . ', 0.00), ';
 endforeach;
 
 $sql = "INSERT IGNORE INTO domains (domainURI, domainAdded, domainImagesIndexed, domainValue) VALUES " . substr($sqlStr,0,-2) . ';';
