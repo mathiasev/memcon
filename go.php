@@ -109,7 +109,7 @@ endforeach;
 print_r($sqlStr);
 $sql = "INSERT IGNORE INTO domains (domainURI) VALUES " . substr($sqlStr,0,-1);
 echo $sql;
-exit;
+
 if (!$result = $mysqli->query($sql)) {
     echo "Sorry, the website is experiencing problems.";
     exit;
