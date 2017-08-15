@@ -101,7 +101,7 @@ if ($mysqli->connect_errno) {
 }
 
 /* Check if Image Exists */
-echo $sql = 'SELECT * FROM images WHERE imageURI = "' . $imageURI . '";';
+echo $sql = 'SELECT * FROM images WHERE imgURI = "' . $imageURI . '";';
 
 if (!$result = $mysqli->query($sql)) {
     echo "BAD SQL.";
