@@ -5,15 +5,11 @@
 // and/or related security problems. Handling all of this goes beyond
 // the scope of this simple example. Example:
 //   http://example.org/script.php?aid=42
-if (isset($_POST['registered']) && ($_GET['registered'] == 'true')) {
-    $count = 1;
-} else {
-    $aid = 1;
-}
+
 
 // Connecting to and selecting a MySQL database named sakila
 // Hostname: 127.0.0.1, username: your_user, password: your_pass, db: sakila
-$mysqli = new mysqli('13.59.66.63', 'generaluser', 'generalpass', 'memcon');
+$mysqli = new mysqli('localhost', 'generaluser', 'generalpass', 'memcon');
 
 // Oh no! A connect_errno exists so the connection attempt failed!
 if ($mysqli->connect_errno) {
