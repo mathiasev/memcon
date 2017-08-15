@@ -85,12 +85,12 @@ foreach ($fullMatches as $match) :
 	endif;
 endforeach;
 
-sendSQL($domains);
+sendSQL($domains, $count);
 
 return array('domains' => $domains, 'count' => $count);
 }
 
-function sendSQL($domains) {
+function sendSQL($domains, $count) {
 	/* Short SQL */
 $mysqli = new mysqli('localhost', 'generaluser', 'generalpass', 'memcon');
 if ($mysqli->connect_errno) {
@@ -114,14 +114,14 @@ if (!$result = $mysqli->query($sql)) {
     exit;
 }
 
-
-foreach ($domains as $domain):
-$sql = 'UPDATE domains SET domainImagesIndexed = domainImagesIndexed + 1 WHERE domainURI = "' .$domain. '";';
+$countVal = count($count);
+for ($i = 0; $i < $countVal; $i++):
+ $sql = 'UPDATE domains SET domainImagesIndexed = domainImagesIndexed + ' . $count[$i] . ' WHERE domainURI = "' .$domain[$i] . '";';
 if (!$result = $mysqli->query($sql)) {
     echo "Couldn't update " . $domain;
 }
 
-endforeach;
+endfor;
 $mysqli->close();
 
 }
