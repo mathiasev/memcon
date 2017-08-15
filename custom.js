@@ -1,6 +1,6 @@
 
 $("#go").click(function(){
-    $.post("http://13.59.66.63/go.php",
+    $.post("http://13.59.66.63/memcon/go.php",
     {
         url: $('#url').val(),
     },
