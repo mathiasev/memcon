@@ -43,6 +43,7 @@ echo "<table class=\"table\"><thead><tr><th>ID</th><th>Domain URL</th><th>Images
 while ($domain = $result->fetch_assoc()) {
     echo "<tr><td>" . $domain['id'] . "</td>";
     echo "<td>" . $domain['domainURI'] . "</td>";
+	echo "<td>" . $domain['domainAdded'] . "</td>";
 	echo "<td>" . $domain['domainImagesIndexed'] . "</td>";
 	echo "<td>" . $domain['domainValue'] . "</td>";
     echo "</tr>\n";
