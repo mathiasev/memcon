@@ -75,10 +75,10 @@ $fullMatches = $data->responses[0]->webDetection->fullMatchingImages;
 foreach ($fullMatches as $match) :
 	$domainArr = explode('/', $match->url);
 	$url = $domainArr[0] . '//' . $domainArr[2] . '</br>';
-	$sqlStr += '("' . $url .'"),';
 	$pos = array_search($url, $domains);
 	if($pos === FALSE):
 		$domains[] = $url;
+		$sqlStr += '("' . $url .'"),';
 		$pos = array_search($url, $domains);
 		$count[$pos] = 1;
 	else:
