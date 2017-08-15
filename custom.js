@@ -6,7 +6,7 @@ $("#go").click(function(){
     },
     function(data, status){
 		$('#result').html(data);
-		$.scrollTo('#result',800);
+		$.scrollTo('#download',800);
     });
 });
 $("#domains").click(function(){
