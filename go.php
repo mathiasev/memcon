@@ -106,7 +106,7 @@ $sqlStr .= '(\'' . $domains[$i] . '\'), ';
 endfor;
 
 $sql = "INSERT IGNORE INTO domains (domainURI) VALUES " . substr($sqlStr,0,-2) . ';';
-echo $sql;
+//echo $sql;
 
 if (!$result = $mysqli->query($sql)) {
     echo "Sorry, could not insert domains.";
@@ -136,7 +136,7 @@ if ($mysqli->connect_errno) {
 }
 
 /* Check if Image Exists */
-echo $sql = 'SELECT * FROM images WHERE imgURI = "' . $imageURI . '";';
+$sql = 'SELECT * FROM images WHERE imgURI = "' . $imageURI . '";';
 
 if (!$result = $mysqli->query($sql)) {
     echo "BAD SQL.";
@@ -146,20 +146,21 @@ $result = $result->fetch_assoc();
 
 if(isset($result['imgURI']) && $result['imgURI'] == $imageURI):
 /* IF image exists */
+echo '<div class="row"><div class="col-md-6">';
 echo '<img src="' . $imageURI . '">';
-echo '<p>Image URL: ' . $imageURI . '</p>';
+echo '<p>Image URL: ' . $imageURI . '</p></div><div class="col-md-6">';
 echo '<p>Added on: ' . $result['imageAdded'] . '</p>';
-echo '<p>Last Updated: ' . $result['imageUpdate'] . '</p>';
+echo '<p>Last Updated: ' . $result['lastUpdate'] . '</p>';
 echo '<h2>Image Value: ' . $result['imageValue'] . '</h2>';
 $domains = json_decode($result['imageDomainsCount']);
 $len = count($domains['domains']);
-$html .= '<table class="table"><thead><tr><th>Domain</th><th>Count</th><th>Value</th><th>Total</th></tr></thead><tbody>';
+$html = '<table class="table"><thead><tr><th>Domain</th><th>Count</th><th>Value</th><th>Total</th></tr></thead><tbody>';
 for ($i = 0; $i < $len; $i++) :
 	$html .= '<tr><td>' . $domains['domains'][$i] . '</td><td id="' . $i . '-qty">' . $domains['count'][$i] . '</td><td><input type="number" value="0.00" id="' . $i . '-value"></td><td id="' . $i . '-total"></th></tr>';
 endfor;
 $html .= '</tbody><tfoot><tr><td></td><td>' . $len . '</td><td></td><td id="tot-val"></td></tr></tfoot></table>';
 echo $html;
-
+echo '</div></div>';
 
 elseif (!isset($result['imgURI']) && $result['imgURI'] != $imageURI):
 
