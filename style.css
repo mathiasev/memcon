@@ -60,6 +60,11 @@ body {
   padding: 30px;
 }
 
+/* Remove border radius */
+.btn {
+	border-radius:0;
+}
+
 
 /*
  * Header
