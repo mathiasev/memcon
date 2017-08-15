@@ -30,37 +30,6 @@ if ($mysqli->connect_errno) {
     exit;
 }
 
-// Perform an SQL query
-$sql = "SELECT * FROM domains LIMIT 1";
-if (!$result = $mysqli->query($sql)) {
-    // Oh no! The query failed. 
-    echo "Sorry, the website is experiencing problems.";
-
-    // Again, do not do this on a public site, but we'll show you how
-    // to get the error information
-    echo "Error: Our query failed to execute and here is why: \n";
-    echo "Query: " . $sql . "\n";
-    echo "Errno: " . $mysqli->errno . "\n";
-    echo "Error: " . $mysqli->error . "\n";
-    exit;
-}
-
-// Phew, we made it. We know our MySQL connection and query 
-// succeeded, but do we have a result?
-if ($result->num_rows === 0) {
-    // Oh, no rows! Sometimes that's expected and okay, sometimes
-    // it is not. You decide. In this case, maybe actor_id was too
-    // large? 
-    echo "We could not find a match for ID $aid, sorry about that. Please try again.";
-    exit;
-}
-
-// Now, we know only one result will exist in this example so let's 
-// fetch it into an associated array where the array's keys are the 
-// table's column names
-$domain = $result->fetch_assoc();
-echo "DomainID: " . $domain['id'] . " Domain URL: " . $domain['domainURI'];
-
 // Now, let's fetch five random actors and output their names to a list.
 // We'll add less error handling here as you can do that on your own now
 $sql = "SELECT * FROM domains";
