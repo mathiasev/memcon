@@ -83,6 +83,9 @@ foreach ($fullMatches as $match) :
 		$count[$pos] ++;
 	endif;
 endforeach;
+
+
+
 return array('domains' => $domains, 'count' => $count);
 }
 
