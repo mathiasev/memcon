@@ -99,12 +99,11 @@ if ($mysqli->connect_errno) {
     echo "Error: " . $mysqli->connect_error . "\n";
     exit;
 }
-$sqlStr ="";
-print_r($domains);
+$sqlStr= '';
+//print_r($domains);
 
 foreach ($domains as $domain) :
-echo $domain;
-echo $sqlStr += '(' . $domain . '), ';
+$sqlStr .= '(' . $domain . '), ';
 endforeach;
 
 print_r($sqlStr);
