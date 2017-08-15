@@ -78,7 +78,7 @@ foreach ($fullMatches as $match) :
 	$pos = array_search($url, $domains);
 	if($pos === FALSE):
 		$domains[] = $url;
-		$sqlStr += '("' . $url .'"),';
+		echo $sqlStr += '("' . $url .'"),';
 		$pos = array_search($url, $domains);
 		$count[$pos] = 1;
 	else:
