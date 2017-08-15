@@ -5,7 +5,7 @@ $("#go").click(function(){
         url: $('#url').val(),
     },
     function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
+		$('#result').innerHTML(data);
     });
 });
 

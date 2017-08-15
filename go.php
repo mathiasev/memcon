@@ -83,8 +83,8 @@ foreach ($fullMatches as $match) :
 		$count[$pos] ++;
 	endif;
 endforeach;
-print_r (array('domains' => $domains, 'count' => $count));
+return array('domains' => $domains, 'count' => $count);
 }
 
-postURL();
+echo postURL();
 ?>
