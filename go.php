@@ -85,7 +85,7 @@ foreach ($fullMatches as $match) :
 	endif;
 endforeach;
 
-//sendSQL($domains);
+sendSQL($domains);
 
 return array('domains' => $domains, 'count' => $count);
 }
@@ -100,6 +100,8 @@ if ($mysqli->connect_errno) {
     exit;
 }
 $sqlStr ="";
+print_r($domains);
+
 foreach ($domains as $domain) :
 echo $sqlStr += '(' . $domain . '), ';
 endforeach;
