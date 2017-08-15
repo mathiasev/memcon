@@ -103,10 +103,10 @@ $sqlStr= '';
 //print_r($domains);
 $countVal = count($count);
 for ($i = 0; $i < $countVal; $i ++):
-$sqlStr .= '(\'' . $domains[$i] . '\',' . $count[$i] . '), ';
+$sqlStr .= '(\'' . $domains[$i] . '\'), ';
 endfor;
 
-$sql = "INSERT IGNORE INTO domains (domainURI, domainImagesIndexed) VALUES " . substr($sqlStr,0,-2) . ';';
+$sql = "INSERT IGNORE INTO domains (domainURI) VALUES " . substr($sqlStr,0,-2) . ';';
 echo $sql;
 
 if (!$result = $mysqli->query($sql)) {
