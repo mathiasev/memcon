@@ -101,14 +101,15 @@ if ($mysqli->connect_errno) {
 }
 
 /* Check if Image Exists */
-$sql = 'SELECT * FROM images WHERE imageURI = "' . $imageURI . '";';
+echo $sql = 'SELECT * FROM images WHERE imageURI = "' . $imageURI . '";';
 
 if (!$result = $mysqli->query($sql)) {
-    echo "New image.";
+    echo "BAD SQL.";
+	exit;
 }
 $result = $result->fetch_assoc();
 
-if($result['id']):
+if(isset($result['id']) ):
 /* IF image exists */
 echo '<img src="' . $imgURI . '">';
 
