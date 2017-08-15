@@ -102,10 +102,10 @@ if ($mysqli->connect_errno) {
 }
 $sqlStr ="";
 foreach ($domains as $domain) :
-$sqlStr += '(' . $domain . '), ';
+echo $sqlStr += '(' . $domain . '), ';
 endforeach;
 
-pr($sqlStr);
+print_r($sqlStr);
 $sql = "INSERT IGNORE INTO domains (domainURI) VALUES " . substr($sqlStr,0,-1);
 echo $sql;
 exit;
