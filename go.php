@@ -116,7 +116,7 @@ if (!$result = $mysqli->query($sql)) {
 
 
 foreach ($domains as $domain):
-$sql = 'UPDATE domains SET domainImagesIndexed = domainImagesIndexed + 1 WHERE domainURI = ' .$domain. ';';
+$sql = 'UPDATE domains SET domainImagesIndexed = domainImagesIndexed + 1 WHERE domainURI = "' .$domain. '";';
 if (!$result = $mysqli->query($sql)) {
     echo "Couldn't update " . $domain;
 }
