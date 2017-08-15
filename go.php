@@ -58,7 +58,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 $html = '';
 $domains = getDomains($output);
 $len = count($domains['domains']);
-$html .= '<table><thead><tr><th>Domain</th><th>Count</th><th>Value</th><th>Total</th></tr></thead><tbody>';
+$html .= '<table class="table"><thead><tr><th>Domain</th><th>Count</th><th>Value</th><th>Total</th></tr></thead><tbody>';
 for ($i = 0; $i < $len; $i++) :
 	$html .= '<tr><td>' . $domains['domains'][$i] . '</td><td id="' . $i . '-qty">' . $domains['count'][$i] . '</td><td><input type="number" value="0.00" id="' . $i . '-value"></td><td id="' . $i . '-total"></th></tr>';
 endfor;
