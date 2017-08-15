@@ -60,6 +60,7 @@ $domains = getDomains($output);
 $len = count($domains['domains']);
 $html .= '<table class="table"><thead><tr><th>Domain</th><th>Count</th><th>Value</th><th>Total</th></tr></thead><tbody>';
 for ($i = 0; $i < $len; $i++) :
+	
 	$html .= '<tr><td>' . $domains['domains'][$i] . '</td><td id="' . $i . '-qty">' . $domains['count'][$i] . '</td><td><input type="number" value="0.00" id="' . $i . '-value"></td><td id="' . $i . '-total"></th></tr>';
 endfor;
 $html .= '</tbody><tfoot><tr><td></td><td>' . $len . '</td><td></td><td id="tot-val"></td></tr></tfoot></table>';
@@ -86,7 +87,13 @@ foreach ($fullMatches as $match) :
 	endif;
 endforeach;
 
-/* Short SQL 
+sendSQL($domains);
+
+return array('domains' => $domains, 'count' => $count);
+}
+
+function sendSQL($domains) {
+	/* Short SQL */
 $mysqli = new mysqli('localhost', 'generaluser', 'generalpass', 'memcon');
 if ($mysqli->connect_errno) {
     echo "Error: Failed to make a MySQL connection, here is why: \n";
@@ -94,8 +101,12 @@ if ($mysqli->connect_errno) {
     echo "Error: " . $mysqli->connect_error . "\n";
     exit;
 }
+$sqlStr ="";
+foreach ($domains as $domain) :
+$sqlStr += '(' . $domain . '), ';
+endforeach;
+
 echo $sqlStr;
-exit;
 $sql = "INSERT IGNORE INTO domains (domainURI) VALUES " . substr($sqlStr,0,-1);
 echo $sql;
 if (!$result = $mysqli->query($sql)) {
@@ -105,9 +116,7 @@ if (!$result = $mysqli->query($sql)) {
 
 $result->free();
 $mysqli->close();
-*/
 
-return array('domains' => $domains, 'count' => $count);
 }
 
 echo postURL();
