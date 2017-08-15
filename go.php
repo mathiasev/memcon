@@ -56,7 +56,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 //pr($output);
 
 $html = '';
-$domains = getDomains($output);
+$domains = getDomains($req_img_uri, $output);
 $len = count($domains['domains']);
 $html .= '<table class="table"><thead><tr><th>Domain</th><th>Count</th><th>Value</th><th>Total</th></tr></thead><tbody>';
 for ($i = 0; $i < $len; $i++) :
@@ -66,7 +66,7 @@ $html .= '</tbody><tfoot><tr><td></td><td>' . $len . '</td><td></td><td id="tot-
 return $html;
 }
 
-function getDomains($output) {
+function getDomains($req_img_uri, $output) {
 $data = json_decode($output);
 
 $domains = array();	$count = array();
