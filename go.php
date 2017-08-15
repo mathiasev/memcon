@@ -78,7 +78,6 @@ foreach ($fullMatches as $match) :
 	$pos = array_search($url, $domains);
 	if($pos === FALSE):
 		$domains[] = $url;
-		//echo $sqlStr += '("' . $url .'"),';
 		$pos = array_search($url, $domains);
 		$count[$pos] = 1;
 	else:
@@ -86,7 +85,7 @@ foreach ($fullMatches as $match) :
 	endif;
 endforeach;
 
-sendSQL($domains);
+//sendSQL($domains);
 
 return array('domains' => $domains, 'count' => $count);
 }
