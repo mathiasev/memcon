@@ -70,10 +70,12 @@ function getDomains($output) {
 $data = json_decode($output);
 
 $domains = array();	$count = array();
+$sqlStr = "";
 $fullMatches = $data->responses[0]->webDetection->fullMatchingImages;
 foreach ($fullMatches as $match) :
 	$domainArr = explode('/', $match->url);
 	$url = $domainArr[0] . '//' . $domainArr[2] . '</br>';
+	$sqlStr += '("' . $url .'"),';
 	$pos = array_search($url, $domains);
 	if($pos === FALSE):
 		$domains[] = $url;
@@ -84,6 +86,23 @@ foreach ($fullMatches as $match) :
 	endif;
 endforeach;
 
+/* Short SQL */
+$mysqli = new mysqli('localhost', 'generaluser', 'generalpass', 'memcon');
+if ($mysqli->connect_errno) {
+    echo "Error: Failed to make a MySQL connection, here is why: \n";
+    echo "Errno: " . $mysqli->connect_errno . "\n";
+    echo "Error: " . $mysqli->connect_error . "\n";
+    exit;
+}
+
+$sql = "INSERT IGNORE INTO domains (domainURI) VALUES " . $sqlStr;
+if (!$result = $mysqli->query($sql)) {
+    echo "Sorry, the website is experiencing problems.";
+    exit;
+}
+
+$result->free();
+$mysqli->close();
 
 
 return array('domains' => $domains, 'count' => $count);
