@@ -153,6 +153,7 @@ echo '<p>Added on: ' . $result['imageAdded'] . '</p>';
 echo '<p>Last Updated: ' . $result['lastUpdate'] . '</p>';
 echo '<h2>Image Value: ' . $result['imageValue'] . '</h2>';
 $domains = json_decode($result['imageDomainsCount']);
+echo '<pre>'; print_r($domains); echo '</pre>';
 $len = count($domains['domains']);
 $html = '<table class="table"><thead><tr><th>Domain</th><th>Count</th><th>Value</th><th>Total</th></tr></thead><tbody>';
 for ($i = 0; $i < $len; $i++) :
