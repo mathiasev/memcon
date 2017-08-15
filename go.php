@@ -103,6 +103,7 @@ $sqlStr ="";
 print_r($domains);
 
 foreach ($domains as $domain) :
+echo $domain;
 echo $sqlStr += '(' . $domain . '), ';
 endforeach;
 
