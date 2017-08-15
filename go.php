@@ -78,7 +78,7 @@ foreach ($fullMatches as $match) :
 	$pos = array_search($url, $domains);
 	if($pos === FALSE):
 		$domains[] = $url;
-		echo $sqlStr += '("' . $url .'"),';
+		//echo $sqlStr += '("' . $url .'"),';
 		$pos = array_search($url, $domains);
 		$count[$pos] = 1;
 	else:
@@ -86,7 +86,7 @@ foreach ($fullMatches as $match) :
 	endif;
 endforeach;
 
-/* Short SQL */
+/* Short SQL 
 $mysqli = new mysqli('localhost', 'generaluser', 'generalpass', 'memcon');
 if ($mysqli->connect_errno) {
     echo "Error: Failed to make a MySQL connection, here is why: \n";
@@ -105,7 +105,7 @@ if (!$result = $mysqli->query($sql)) {
 
 $result->free();
 $mysqli->close();
-
+*/
 
 return array('domains' => $domains, 'count' => $count);
 }
