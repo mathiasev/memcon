@@ -45,6 +45,20 @@ while ($domain = $result->fetch_assoc()) {
      foreach($domain as $column):
         echo '<td>' . $column . '</td>';
     endforeach;
+    echo '<td><i class="fa fa-';
+    switch (true):
+        case ($domain['domainValue'] < $domain['domainPreviousValue']):
+            echo 'caret-down';
+            break;
+        case ($domain['domainValue'] > $domain['domainPreviousValue']):
+            echo 'caret-up';
+            break;
+        case ($domain['domainValue'] == $domain['domainPreviousValue']):
+            echo 'minus';
+            break;
+    endswitch;
+    echo '"></i></td>';
+
     echo '</tr>';
 }
 echo "</tbody></table>";
