@@ -39,8 +39,7 @@ endif;
 function getImageInfo($req_image_uri) {
     /* Set Google Details */
     require_once('/var/www/apikey.php');
-    echo $apikey;
-    $req_url = 'https://vision.googleapis.com/v1/images:annotate?key=' . $req_key;
+    $req_url = 'https://vision.googleapis.com/v1/images:annotate?key=' . $apikey;
 }
 
 
@@ -52,6 +51,6 @@ function imageExists($req_image_uri) {
     $result = $mysqli->query($sql);
     if (!$result = $mysqli->query($sql)) { echo "Error searching for image."; exit;}
     $image = $result->fetch_assoc();
-    $imageExists = (isset($image['imageURI'])) ? true : false;
+    $imageExists = (isset($image['id'])) ? true : false;
     return $imageExists;
 }
