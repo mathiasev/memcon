@@ -1,7 +1,7 @@
 <?php 
 
 /* ---- Image URL submitted by user ---- */
-$req_image_uri = (isset($_POST['url'])) ? $_POST['url']; 
+$req_image_uri = (isset($_POST['url'])) ? $_POST['url'] : null; 
 
 /* ---- Load Database ---- */
 $mysqli = new mysqli('localhost', 'generaluser', 'generalpass', 'memcon');
