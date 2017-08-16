@@ -48,16 +48,16 @@ while ($domain = $result->fetch_assoc()) {
     echo '<td><i class="fa fa-';
     switch (true):
         case ($domain['domainValue'] < $domain['domainPreviousValue']):
-            echo 'caret-down';
+            echo 'caret-down"></i><span class="sr-only">-1</span>';
             break;
         case ($domain['domainValue'] > $domain['domainPreviousValue']):
-            echo 'caret-up';
+            echo 'caret-up"></i><span class="sr-only">1</span>';
             break;
         case ($domain['domainValue'] == $domain['domainPreviousValue']):
-            echo 'minus';
+            echo 'minus"></i><span class="sr-only">0</span>';
             break;
     endswitch;
-    echo '"></i></td>';
+    echo '</td>';
 
     echo '</tr>';
 }
