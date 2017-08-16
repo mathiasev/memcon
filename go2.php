@@ -16,6 +16,6 @@ checkImageExists($req_image_uri);
 function checkImageExists($req_image_uri) {
     /* 1. See if image is in DB */
 
-    $sql = 'SELECT id FROM images WHERE imageURI = "$req_image_uri"';
+    $sql = 'SELECT id FROM images WHERE imageURI = "{$req_image_uri}"';
     echo $sql;
 }
