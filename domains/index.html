@@ -98,6 +98,7 @@
     <!-- Plugin JavaScript -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.15/js/jquery.tablesorter.js"></script>
 
     <!-- Custom scripts for this template -->
     <script src="../js/new-age.min.js"></script>
@@ -108,7 +109,8 @@ $.post("http://13.59.66.63/memcon/domains/domains.php",
         registered: 'true',
     },
     function(data, status){
-		$('#result').html(data);
+    $('#result').html(data);
+      $("#resultTable").tablesorter();
     });});</script>
   </body>
 
