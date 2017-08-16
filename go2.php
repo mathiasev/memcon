@@ -1,4 +1,6 @@
 <?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 /* ---- Image URL submitted by user ---- */
 $req_image_uri = (isset($_POST['url'])) ? $_POST['url'] : null; 
