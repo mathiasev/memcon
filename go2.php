@@ -48,7 +48,7 @@ $req_url = 'https://vision.googleapis.com/v1/images:annotate?key=' . $req_key;
 function imageExists($req_image_uri) {
     global $mysqli;
     /* 1. See if image is in DB */
-    echo $sql = 'SELECT id FROM images WHERE imageURI = "' . $req_image_uri . '";';
+    echo $sql = 'SELECT `id` FROM `images` WHERE `imgURI` = "' . $req_image_uri . '";';
     $result = $mysqli->query($sql);
     print_r($result);
     exit;
