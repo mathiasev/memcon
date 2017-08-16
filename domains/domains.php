@@ -39,7 +39,7 @@ if (!$result = $mysqli->query($sql)) {
 }
 
 // Print our 5 random actors in a list, and link to each actor
-echo "<table class=\"table\" id=\"resultTable\"><thead><tr><th>ID</th><th>Domain URL</th><th>Date Added</th><th>Images Indexed</th><th>Domain Value</th><th>Last Updated</th><th>Previous Value</th></tr><th>Change</th></thead><tbody>\n";
+echo "<table class=\"table\" id=\"resultTable\"><thead><tr><th>ID</th><th>Domain URL</th><th>Date Added</th><th>Images Indexed</th><th>Domain Value</th><th>Last Updated</th><th>Previous Value</th><th>Change</th></tr></thead><tbody>\n";
 while ($domain = $result->fetch_assoc()) {
     echo '<tr>';
      foreach($domain as $column):
