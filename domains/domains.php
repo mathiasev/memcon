@@ -39,15 +39,15 @@ if (!$result = $mysqli->query($sql)) {
 }
 
 // Print our 5 random actors in a list, and link to each actor
-echo "<table class=\"table\"><thead><tr><th>ID</th><th>Domain URL</th><th>Date Added</th><th>Images Indexed</th><th>Domain Value</th></tr></thead><tbody>\n";
+echo "<table class=\"table\"><thead><tr><th>ID</th><th>Domain URL</th><th>Date Added</th><th>Images Indexed</th><th>Domain Value</th><th>Last Updated</th><th>Previous Value</th></tr></thead><tbody>\n";
 while ($domain = $result->fetch_assoc()) {
     echo '<tr>';
      foreach($domain as $column):
         echo '<td>' . $column . '</td>';
     endforeach;
-    echo '</tr>\n';
+    echo '</tr>';
 }
-echo "</tbody></table>\n";
+echo "</tbody></table>";
 
 // The script will automatically free the result and close the MySQL
 // connection when it exits, but let's just do it anyways
