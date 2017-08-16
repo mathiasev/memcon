@@ -29,18 +29,18 @@ function getCURL($req_body, $req_url) {
 
 /* ---- If image isn't registered ---- */
 if(!imageExists($req_image_uri)):
-    /* 1. Ask Googe for image details */
-    $imageDetails = getImageDetails($req_image_uri);
+    /* 1. Ask Googe for image info */
+    $imageInfo = getImageInfo($req_image_uri);
 endif;
 
-/* ---- Get Image Details from Google ---- */
-function getImageDetails($req_image_uri) {
+
+
+/* ---- Get Image Info from Google ---- */
+function getImageInfo($req_image_uri) {
     /* Set Google Details */
     require_once('/usr/ubuntu/apikey.php');
-    $req_key ;
-$req_url = 'https://vision.googleapis.com/v1/images:annotate?key=' . $req_key;
-
-
+    echo $apikey;
+    $req_url = 'https://vision.googleapis.com/v1/images:annotate?key=' . $req_key;
 }
 
 
@@ -48,10 +48,8 @@ $req_url = 'https://vision.googleapis.com/v1/images:annotate?key=' . $req_key;
 function imageExists($req_image_uri) {
     global $mysqli;
     /* 1. See if image is in DB */
-    echo $sql = 'SELECT `id` FROM `images` WHERE `imgURI` = "' . $req_image_uri . '";';
+    $sql = 'SELECT `id` FROM `images` WHERE `imgURI` = "' . $req_image_uri . '";';
     $result = $mysqli->query($sql);
-    print_r($result);
-    exit;
     if (!$result = $mysqli->query($sql)) { echo "Error searching for image."; exit;}
     $image = $result->fetch_assoc();
     $imageExists = (isset($image['imageURI'])) ? true : false;
