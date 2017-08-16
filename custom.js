@@ -10,13 +10,7 @@ $("#go").click(function(){
     });
 });
 $("#domains").click(function(){
-    $.post("http://13.59.66.63/memcon/domains/domains.php",
-    {
-        registered: 'true',
-    },
-    function(data, status){
-		$('#result').html(data);
-    });
+    
 });
 
 
