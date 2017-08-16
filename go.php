@@ -166,7 +166,7 @@ echo '</div></div>';
 elseif (!isset($result['imgURI']) && $result['imgURI'] != $imageURI):
 
 	postURL();
-	sendSQL($imageURI);
+	//sendSQL($imageURI);
 endif;
 
 
