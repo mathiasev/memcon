@@ -38,7 +38,7 @@ endif;
 /* ---- Get Image Info from Google ---- */
 function getImageInfo($req_image_uri) {
     /* Set Google Details */
-    require_once('/usr/ubuntu/apikey.php');
+    require_once('/var/www/apikey.php');
     echo $apikey;
     $req_url = 'https://vision.googleapis.com/v1/images:annotate?key=' . $req_key;
 }
