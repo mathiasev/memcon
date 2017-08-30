@@ -20,5 +20,14 @@ $("#go2").click(function(){
     });
 });
 
+jQuery("input[id$=\'-value\']").change(function () {
+var total = 0.0;
+jQuery("input[id$=\'-value\']").each(function (index, value) {
+var val = parseFloat(jQuery("#" + index +"-qty").text()) * jQuery(value).val();
+jQuery("#" + index + "-total").text(val);
+total += val;
+});
+jQuery("#tot-val").text(total);});
 
 console.log("Ready");
+
