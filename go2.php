@@ -33,6 +33,21 @@ if(!imageExists($req_image_uri)):
     $imageInfo = getImageInfo($req_image_uri);
 endif;
 
+getMemcon($req_image_uri);
+
+
+
+/* ---- Get Image Info from Memcon ---- */
+function getMemcon($req_image_uri) {
+	global $mysql;
+	
+	/* 1. Get image info from DB */
+	$sql = 'SELECT `imgURI` FROM `images` WHERE `imgURI` = "' . $req_image_uri . '";';
+	$result = $mysqli->query($sql);
+    if (!$result = $mysqli->query($sql)) { echo "Error searching for image."; exit;}
+    $image = $result->fetch_assoc();
+    echo '<img src="'. $image['imgURI'] .'">';
+}
 
 
 /* ---- Get Image Info from Google ---- */
