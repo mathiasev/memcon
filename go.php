@@ -61,7 +61,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 
         // close curl resource to free up system resources 
         curl_close($ch);   
-pr($output);
+print_r($output);
 
 $html = '';
 $len = count($domains['domains']);
