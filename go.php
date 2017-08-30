@@ -76,7 +76,7 @@ return $html;
 function getDomains($req_img_uri, $output) {
 	global $mysqli;
 $data = json_decode($output);
-
+echo '<pre>';print_r($data); echo '</pre>';
 $domains = array();	$count = array();
 $sqlStr = "";
 $fullMatches = $data->responses[0]->webDetection->fullMatchingImages;
