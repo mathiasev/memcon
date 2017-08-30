@@ -47,10 +47,10 @@ function getImageInfo($req_image_uri) {
 function imageExists($req_image_uri) {
     global $mysqli;
     /* 1. See if image is in DB */
-    $sql = 'SELECT `id` FROM `images` WHERE `imgURI` = "' . $req_image_uri . '";';
+    $sql = 'SELECT `imgURI` FROM `images` WHERE `imgURI` = "' . $req_image_uri . '";';
     $result = $mysqli->query($sql);
     if (!$result = $mysqli->query($sql)) { echo "Error searching for image."; exit;}
     $image = $result->fetch_assoc();
-    $imageExists = (isset($image['id'])) ? true : false;
+    $imageExists = (isset($image['imgURI'])) ? true : false;
     return $imageExists;
 }
