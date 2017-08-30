@@ -39,7 +39,7 @@ getMemcon($req_image_uri);
 
 /* ---- Get Image Info from Memcon ---- */
 function getMemcon($req_image_uri) {
-	global $mysql;
+	global $mysqli;
 	
 	/* 1. Get image info from DB */
 	$sql = 'SELECT `imgURI` FROM `images` WHERE `imgURI` = "' . $req_image_uri . '";';
