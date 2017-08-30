@@ -29,7 +29,7 @@ $req_body = '{
       "features":[
        {
           "type": "WEB_DETECTION",
-          "maxResults": 200
+          "maxResults": 2000000
         }
       ]
     }
@@ -61,10 +61,9 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 
         // close curl resource to free up system resources 
         curl_close($ch);   
-//pr($output);
+pr($output);
 
 $html = '';
-$domains = getDomains($req_img_uri, $output);
 $len = count($domains['domains']);
 $html .= '<table class="table"><thead><tr><th>Domain</th><th>Count</th><th>Value</th><th>Total</th></tr></thead><tbody>';
 for ($i = 0; $i < $len; $i++) :

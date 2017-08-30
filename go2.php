@@ -55,6 +55,9 @@ function getImageInfo($req_image_uri) {
     /* Set Google Details */
     require_once('/var/www/apikey.php');
     $req_url = 'https://vision.googleapis.com/v1/images:annotate?key=' . $apikey;
+	$req_body = '{"requests":[{ "image":{"source":{"imageUri":"' . $req_img_uri . '"}},"features":[{"type": "WEB_DETECTION","maxResults": 200}]}]}';
+
+	$output = getCURL($req_body, $req_url);
 }
 
 
