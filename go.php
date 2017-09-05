@@ -29,7 +29,7 @@ $req_body = '{
       "features":[
        {
           "type": "WEB_DETECTION",
-          "maxResults": 2000000
+          "maxResults": 200
         }
       ]
     }
