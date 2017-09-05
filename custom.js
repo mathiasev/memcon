@@ -1,6 +1,6 @@
 
 $("#go").click(function(){
-    $.post("http://13.59.66.63/memcon/go.php",
+    $.post("http://ec2-18-220-220-188.us-east-2.compute.amazonaws.com/mem/go.php",
     {
         url: $('#url').val(),
     },
@@ -11,7 +11,7 @@ $("#go").click(function(){
     });
 });
 $("#go2").click(function(){
-    $.post("http://13.59.66.63/memcon/go2.php",
+    $.post("http://ec2-18-220-220-188.us-east-2.compute.amazonaws.com/mem/go2.php",
     {
         url: $('#url').val(),
     },
