@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 /* Short SQL */
-$mysqli = new mysqli('localhost', 'generaluser', 'generalpass', 'memcon');
+$mysqli = new mysqli('localhost', 'root', 'MathiasEN1', 'memcon');
 if ($mysqli->connect_errno) {
     echo "Error: Failed to make a MySQL connection, here is why: \n";
     echo "Errno: " . $mysqli->connect_errno . "\n";
